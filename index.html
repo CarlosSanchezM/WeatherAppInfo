@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+  <title>Vite App</title>
+</head>
+
+<body id="weatherBody">
+  <Main class="weatherapp-container">
+    <div class="next-dates-container" id="next-dates-container">
+      <div class="today-information">
+        <div class="current-container" id="current-container">
+          <div class="current-temperature" id="currentTemperature">36°</div>
+          <div class="current-day" id="currentDay">SUN/DEC 01</div>
+        </div>
+        <div class="current-weather-container" id="currentWeather">
+          <i class="fa-solid fa-cloud-moon"></i>
+          <div class="current-weather">Cloudy</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="top-info">4AM</div>
+        <i class="fa-solid fa-cloud"></i>
+        <div class="bottom-info">37</div>
+      </div>
+      <div class="info-item">
+        <div class="top-info">5AM</div>
+        <i class="fa-solid fa-cloud"></i>
+        <div class="bottom-info">36</div>
+      </div>
+      <div class="info-item">
+        <div class="top-info">6AM</div>
+        <i class="fa-solid fa-cloud-moon"></i>
+        <div class="bottom-info">36</div>
+      </div>
+      <div class="info-item">
+        <div class="top-info">6:58AM</div>
+        <i class="fa-solid fa-sun"></i>
+        <div class="bottom-info">Sunrise</div>
+      </div>
+      <div class="info-item">
+        <div class="top-info">7AM</div>
+        <i class="fa-solid fa-cloud-sun"></i>
+        <div class="bottom-info">36</div>
+      </div>
+    </div>
+    <div class="additional-information-background">
+      <div class="additional-information-container">
+        <div class="city">
+          <i class="fa-solid fa-location-dot"></i><input class="city-input" id="search" type="text"
+            placeholder="Search city">
+        </div>
+        <!-- <div class="city">Brooklyn, NY</div> -->
+        <div class="additional-information">
+          <div><span>Feels like</span><span id="information-feelsLike">36°</span></div>
+          <div><span>Min / Max Temp</span><span id="information-minMaxTemp">18° / 25°</span></div>
+          <div><span>Humidity</span><span id="information-humidity">67%</span></div>
+          <div><span>Wind</span><span id="information-wind">0 mph</span></div>
+        </div>
+        <div class="today-button enable" id="todayButton">
+          <div>Today</div>
+        </div>
+        <div class="week-button disable" id="weekButton">
+          <div>Week</div>
+        </div>
+        <div class="grades">
+          <div><span class="enable" id="centigradeButton">°C</span> <span>/</span> <span class="disable"
+              id="fahrenheitButton">°F</span>
+          </div>
+        </div>
+        <div class="banner">
+          <div><i class="fa-solid fa-location-arrow"></i></div>
+        </div>
+        <div class="clock">
+          <div><i class="fa-solid fa-clock"></i><span id="clockCurrentTime"> 1:44:32 am</span></div>
+        </div>
+      </div>
+    </div>
+  </Main>
+  <!-- <div id="app"></div> -->
+  <script type="module" src="/main.js"></script>
+  <script src="https://kit.fontawesome.com/7c8801c017.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
