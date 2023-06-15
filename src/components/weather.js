@@ -4,12 +4,12 @@ import { buildImageBackground } from "./ImageBackgroundMethods"
 
 import { buildWeatherForecastInfo, changeStateInformation } from "./WeatherForecastInfoMethods"
 import { additionalInformation, clockTime, currentWeatherLocation } from "./WeatherInfoMethods"
-import { ForescatInformation } from "./helper"
+import { ForescatInformation, GradesType } from "./helper"
 
 let responseMainWeather = null
 let responseForecast = null
 let responseImage = null
-let currentTemperature = 'C'
+let currentTemperature = GradesType.Centigrades
 
 // const currentWeatherLocation = ({ weather, dt, main }) => {
 //     const currentTemperatureDiv = document.getElementById('currentTemperature')
@@ -166,13 +166,13 @@ const getImageBackground = async (city) => {
 const changeStateGrades = (temp) => {
     const centigradeButton = document.getElementById('centigradeButton')
     const fahrenheitButton = document.getElementById('fahrenheitButton')
-    if (temp === 'F') {
+    if (temp === GradesType.Fahrenheit) {
         fahrenheitButton.classList.remove('disable')
         fahrenheitButton.classList.add('enable')
         centigradeButton.classList.remove('enable')
         centigradeButton.classList.add('disable')
     }
-    if (temp === 'C') {
+    if (temp === GradesType.Centigrades) {
         centigradeButton.classList.remove('disable')
         centigradeButton.classList.add('enable')
         fahrenheitButton.classList.remove('enable')
@@ -180,14 +180,14 @@ const changeStateGrades = (temp) => {
     }
 }
 
-export const buildAll = (temp = 'C') => {
+export const buildAll = (temp = GradesType.Centigrades) => {
     console.log(temp)
     // let withInformation = false
     changeStateGrades(temp)
     currentTemperature = temp
     let withInformation = buildWeatherInfo(responseMainWeather)
     if (!withInformation) {
-        alert("Ingresa una ciudad")
+        // alert("Ingresa una ciudad")
         return
     }
     buildWeatherForecastInfo(responseForecast, currentTemperature)
