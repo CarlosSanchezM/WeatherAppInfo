@@ -4,6 +4,11 @@ export const ForescatInformation = {
     Week: 'week'
 }
 
+export const GradesType = {
+    Fahrenheit: 'F',
+    Centigrades: 'C'
+}
+
 export const getDayName = (dayName) => {
 
     const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
