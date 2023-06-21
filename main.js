@@ -17,5 +17,5 @@ todayButton.addEventListener('click', todayButtonClickHandler)
 
 centigradeButton.addEventListener('click', () => { buildAll(GradesType.Centigrades) })
 fahrenheitButton.addEventListener('click', () => { buildAll(GradesType.Fahrenheit) })
-
-
+const screenElement = document.getElementById("screen")
+screenElement.innerHTML = `w:${screen.width} h:${screen.height}`
