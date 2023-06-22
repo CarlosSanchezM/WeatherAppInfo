@@ -45,7 +45,7 @@ body {
 .next-dates-container {
   display: grid;
   grid-template-columns: 3fr 1fr 1fr 1fr 1fr 1fr;
-  column-gap: .1em;
+  /* column-gap: .1em; */
   height: 170px;
   background-color: var(--next-Dates-Container-Background);
   color: var(--main-text-color);
@@ -313,6 +313,18 @@ body {
     height: auto;
   }
 
+  .next-dates-container>div:not(:last-child) {
+    border: none;
+    /* background-color: #ffd900; */
+  }
+
+  .next-dates-container>div.info-item {
+    border-right: #4855606e solid 1px;
+    /* background-color: #ffd900; */
+  }
+
+
+
   .today-information {
     grid-row: 1/1;
     grid-column: 1 / span 6;
@@ -326,7 +338,7 @@ body {
 
   .current-container,
   .current-weather-container {
-
+    font-size: 1.5em;
     margin: 0;
   }
 
@@ -353,7 +365,11 @@ body {
     grid-row: 2/2;
     grid-column: auto;
     margin: 0.5em 0;
-    font-size: 1.5;
+    font-size: 1.5em;
+  }
+
+  .current-weather {
+    font-size: 1.5em;
   }
 
   .city i {
@@ -391,7 +407,7 @@ body {
     margin-bottom: 2em;
     grid-column: 1 / span 2;
     grid-row: auto;
-    font-size: 1.5em;
+    font-size: 2em;
   }
 
   .additional-information div {
