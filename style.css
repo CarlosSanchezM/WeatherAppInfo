@@ -231,7 +231,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-right: 35em;
+  margin-right: 26em;
   font-weight: 300;
 }
 
@@ -330,10 +330,8 @@ body {
     grid-column: 1 / span 6;
     margin-left: 30%;
     margin-right: 30%;
-    /* flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    text-align: center; */
+    justify-content: space-between;
+    text-align: justify;
   }
 
   .current-container,
@@ -350,6 +348,9 @@ body {
   .current-weather-container>i {
     padding: 0;
     font-size: 4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .current-temperature {
@@ -370,6 +371,7 @@ body {
 
   .current-weather {
     font-size: 1.5em;
+    margin: 0;
   }
 
   .city i {
