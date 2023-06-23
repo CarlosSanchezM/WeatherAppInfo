@@ -222,9 +222,9 @@ body {
 .additional-information {
   height: 30vh;
   padding-left: 4em;
-  grid-column: 1 / span 6;
+  grid-column: 1 / span 4;
   grid-row: 2 / 2;
-  font-size: 2.3vw;
+
   /* border: 5px solid black; */
 }
 
