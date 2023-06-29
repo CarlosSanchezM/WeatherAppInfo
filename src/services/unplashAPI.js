@@ -11,4 +11,4 @@ export const getImages = async (city) => {
   } catch (error) {
     console.error(`getImages error -> ${error}`)
   }
-}   
+}

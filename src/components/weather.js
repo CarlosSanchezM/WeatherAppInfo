@@ -1,10 +1,17 @@
-import { getImages } from "../services/unplashAPI"
-import { getForecast, getWeather } from "../services/weatherAPI"
-import { buildImageBackground } from "./ImageBackgroundMethods"
+import { getImages } from '../services/unplashAPI'
+import { getForecast, getWeather } from '../services/weatherAPI'
+import { buildImageBackground } from './ImageBackgroundMethods'
 
-import { buildWeatherForecastInfo, changeStateInformation } from "./WeatherForecastInfoMethods"
-import { additionalInformation, clockTime, currentWeatherLocation } from "./WeatherInfoMethods"
-import { ForescatInformation, GradesType } from "./helper"
+import {
+  buildWeatherForecastInfo,
+  changeStateInformation
+} from './WeatherForecastInfoMethods'
+import {
+  additionalInformation,
+  clockTime,
+  currentWeatherLocation
+} from './WeatherInfoMethods'
+import { ForescatInformation, GradesType } from './helper'
 
 let responseMainWeather = null
 let responseForecast = null
@@ -46,15 +53,15 @@ let currentTemperature = GradesType.Centigrades
 // }
 
 const buildWeatherInfo = (data) => {
-    console.log('buildWeatherInfo -> ', data)
-    if (data === null) {
-        return false
-    }
-    currentWeatherLocation(data, currentTemperature)
-    additionalInformation(data, currentTemperature)
-    changeStateInformation(ForescatInformation.Today)
-    clockTime(data)
-    return true
+  console.log('buildWeatherInfo -> ', data)
+  if (data === null) {
+    return false
+  }
+  currentWeatherLocation(data, currentTemperature)
+  additionalInformation(data, currentTemperature)
+  changeStateInformation(ForescatInformation.Today)
+  clockTime(data)
+  return true
 }
 
 // const removeInfoItem = () => {
@@ -77,7 +84,7 @@ const buildWeatherInfo = (data) => {
 //     let weekInfoList = list.filter((data) => data.dt_txt.includes('15:00:00'))
 //     const containerInfoItems = document.getElementById('next-dates-container')
 
-//     // week 
+//     // week
 //     weekInfoList.forEach((item) => {
 //         const infoItem = document.createElement('div')
 //         infoItem.classList.add('info-item')
@@ -102,7 +109,7 @@ const buildWeatherInfo = (data) => {
 //     let todayInfoList = list.filter((element, index) => index < 5)
 
 //     const containerInfoItems = document.getElementById('next-dates-container')
-//     // today 
+//     // today
 //     todayInfoList.forEach((item) => {
 
 //         const infoItem = document.createElement('div')
@@ -141,77 +148,72 @@ const buildWeatherInfo = (data) => {
 
 // }
 
-
 const getForecastComponent = async ({ coord }) => {
-    responseForecast = await getForecast(coord.lat, coord.lon)
-    if (responseForecast.cod === '404') {
-        console.info('error getForecastComponent ->', responseForecast.message)
-        return
-    }
-    console.log('buildWeatherForecastInfo -> ', responseForecast)
-    buildWeatherForecastInfo(responseForecast, currentTemperature)
+  responseForecast = await getForecast(coord.lat, coord.lon)
+  if (responseForecast.cod === '404') {
+    console.info('error getForecastComponent ->', responseForecast.message)
+    return
+  }
+  console.log('buildWeatherForecastInfo -> ', responseForecast)
+  buildWeatherForecastInfo(responseForecast, currentTemperature)
 }
-
 
 const getImageBackground = async (city) => {
-    responseImage = await getImages(city)
-    console.log("getImage", responseImage)
-    if (responseImage.total === 0) {
-        console.log("No Imagen")
-        return
-    }
+  responseImage = await getImages(city)
+  console.log('getImage', responseImage)
+  if (responseImage.total === 0) {
+    console.log('No Imagen')
+    return
+  }
 
-    buildImageBackground(responseImage)
+  buildImageBackground(responseImage)
 }
 const changeStateGrades = (temp) => {
-    const centigradeButton = document.getElementById('centigradeButton')
-    const fahrenheitButton = document.getElementById('fahrenheitButton')
-    if (temp === GradesType.Fahrenheit) {
-        fahrenheitButton.classList.remove('disable')
-        fahrenheitButton.classList.add('enable')
-        centigradeButton.classList.remove('enable')
-        centigradeButton.classList.add('disable')
-    }
-    if (temp === GradesType.Centigrades) {
-        centigradeButton.classList.remove('disable')
-        centigradeButton.classList.add('enable')
-        fahrenheitButton.classList.remove('enable')
-        fahrenheitButton.classList.add('disable')
-    }
+  const centigradeButton = document.getElementById('centigradeButton')
+  const fahrenheitButton = document.getElementById('fahrenheitButton')
+  if (temp === GradesType.Fahrenheit) {
+    fahrenheitButton.classList.remove('disable')
+    fahrenheitButton.classList.add('enable')
+    centigradeButton.classList.remove('enable')
+    centigradeButton.classList.add('disable')
+  }
+  if (temp === GradesType.Centigrades) {
+    centigradeButton.classList.remove('disable')
+    centigradeButton.classList.add('enable')
+    fahrenheitButton.classList.remove('enable')
+    fahrenheitButton.classList.add('disable')
+  }
 }
 
 export const buildAll = (temp = GradesType.Centigrades) => {
-    console.log(temp)
-    // let withInformation = false
-    changeStateGrades(temp)
-    currentTemperature = temp
-    let withInformation = buildWeatherInfo(responseMainWeather)
-    if (!withInformation) {
-        // alert("Ingresa una ciudad")
-        return
-    }
-    buildWeatherForecastInfo(responseForecast, currentTemperature)
-    buildImageBackground(responseImage)
+  console.log(temp)
+  // let withInformation = false
+  changeStateGrades(temp)
+  currentTemperature = temp
+  const withInformation = buildWeatherInfo(responseMainWeather)
+  if (!withInformation) {
+    // alert("Ingresa una ciudad")
+    return
+  }
+  buildWeatherForecastInfo(responseForecast, currentTemperature)
+  buildImageBackground(responseImage)
 }
 
 export const searchInputComponent = async (e) => {
-    if (e.key === 'Enter') {
-        let text = e.target.value
-        if (text.length > 3) {
+  if (e.key === 'Enter') {
+    const text = e.target.value
+    if (text.length > 3) {
+      responseMainWeather = await getWeather(text)
+      if (responseMainWeather.cod === '404') {
+        alert('ciudad no encontrada!')
+        return
+      }
 
-            responseMainWeather = await getWeather(text)
-            if (responseMainWeather.cod === '404') {
-                alert('ciudad no encontrada!')
-                return
-            }
+      buildWeatherInfo(responseMainWeather)
+      await getForecastComponent(responseMainWeather)
+      await getImageBackground(text)
 
-            buildWeatherInfo(responseMainWeather)
-            await getForecastComponent(responseMainWeather)
-            await getImageBackground(text)
-
-            //Promise.all(forecast, image)
-        }
+      // Promise.all(forecast, image)
     }
+  }
 }
-
-
